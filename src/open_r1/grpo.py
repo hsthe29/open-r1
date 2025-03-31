@@ -79,6 +79,8 @@ def main(script_args, training_args, model_args):
     # Load tokenizer
     ################
     tokenizer = get_tokenizer(model_args, training_args)
+    if not tokenizer.pad_token:
+        tokenizer.pad_token = tokenizer.eos_token
 
     # Get reward functions from the registry
     reward_funcs = get_reward_funcs(script_args)
