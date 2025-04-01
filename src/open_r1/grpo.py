@@ -113,7 +113,7 @@ def main(script_args, training_args, model_args):
         trust_remote_code=model_args.trust_remote_code,
         attn_implementation=model_args.attn_implementation,
         torch_dtype=torch_dtype,
-        device_map="auto",
+        device_map=os.environ.get("DEVICE_MAP", "cuda"),
         use_cache=False if training_args.gradient_checkpointing else True,
     )
     training_args.model_init_kwargs = model_kwargs
